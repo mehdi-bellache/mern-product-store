@@ -4,9 +4,9 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/api/v1/products", (req, res) => {
-  res.send("All products");
-});
+import { getAllProducts } from "./controllers/productsController";
+
+app.get("/api/v1/products", gettAllProduct);
 
 app.get("/api/v1/products/:id", (req, res) => {
   res.send("One product");
