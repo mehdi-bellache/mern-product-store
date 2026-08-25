@@ -11,8 +11,17 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
-export const getProduct = (req, res) => {
-  res.send("One product");
+export const getProduct = async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const product = await Product.findOne({ _id: productId });
+    if (!product) {
+      res.status(StatusCodes.NOT_FOUND).json({ message: "Product not found" });
+    }
+    res.status(StatusCodes.OK).json({ product });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal Server Error");
+  }
 };
 
 export const createProduct = async (req, res) => {
