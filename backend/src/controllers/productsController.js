@@ -15,8 +15,14 @@ export const getProduct = (req, res) => {
   res.send("One product");
 };
 
-export const createProduct = (req, res) => {
-  res.send("product created");
+export const createProduct = async (req, res) => {
+  try {
+    const { name, price, image } = req.body;
+    const product = await Product.create({ name, price, image });
+    res.status(StatusCodes.CREATED).json({ product });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal Server Error");
+  }
 };
 
 export const updateProduct = (req, res) => {
