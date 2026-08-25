@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 export const getAllProducts = async (req, res) => {
   try {
     const products = await Product.find({});
-    res.status(StatusCodes.OK).json({ products });
+    res.status(StatusCodes.OK).json(products);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal Server Error");
   }
@@ -18,7 +18,7 @@ export const getProduct = async (req, res) => {
     if (!product) {
       res.status(StatusCodes.NOT_FOUND).json({ message: "Product not found" });
     }
-    res.status(StatusCodes.OK).json({ product });
+    res.status(StatusCodes.OK).json(product);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal Server Error");
   }
@@ -28,7 +28,7 @@ export const createProduct = async (req, res) => {
   try {
     const { name, price, image } = req.body;
     const product = await Product.create({ name, price, image });
-    res.status(StatusCodes.CREATED).json({ product });
+    res.status(StatusCodes.CREATED).json(product);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal Server Error");
   }
@@ -48,9 +48,7 @@ export const updateProduct = async (req, res) => {
     if (!updatedProduct) {
       res.status(StatusCodes.NOT_FOUND).json({ message: "Product not found" });
     }
-    res
-      .status(StatusCodes.OK)
-      .json({ message: "Product updated successfully" });
+    res.status(StatusCodes.OK).json(updatedProduct);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal Server Error");
   }
