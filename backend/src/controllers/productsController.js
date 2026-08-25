@@ -1,4 +1,3 @@
-import express from "express";
 import Product from "../models/Product.js";
 import { StatusCodes } from "http-status-codes";
 
@@ -29,6 +28,11 @@ export const getProduct = async (req, res) => {
 export const createProduct = async (req, res) => {
   try {
     const { name, price, image } = req.body;
+    if (!name || !price || !image) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Please provide all fields" });
+    }
     const product = await Product.create({ name, price, image });
     res.status(StatusCodes.CREATED).json(product);
   } catch (error) {
@@ -58,14 +62,7 @@ export const updateProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.id;
-    const deletedProduct = await Product.findOneAndDelete(
-      { _id: productId },
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      },
-    );
+    const deletedProduct = await Product.findOneAndDelete({ _id: productId });
     if (!deletedProduct) {
       return res
         .status(StatusCodes.NOT_FOUND)
