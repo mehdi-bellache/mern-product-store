@@ -34,10 +34,46 @@ export const createProduct = async (req, res) => {
   }
 };
 
-export const updateProduct = (req, res) => {
-  res.send("product updated");
+export const updateProduct = async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const updatedProduct = await Product.findOneAndUpdate(
+      { _id: productId },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
+    if (!updatedProduct) {
+      res.status(StatusCodes.NOT_FOUND).json({ message: "Product not found" });
+    }
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Product updated successfully" });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal Server Error");
+  }
 };
 
-export const deleteProduct = (req, res) => {
-  res.send("product deleted");
+export const deleteProduct = async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const deletedProduct = await Product.findOneAndDelete(
+      { _id: productId },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
+    if (!deletedProduct) {
+      res.status(StatusCodes.NOT_FOUND).json({ message: "Product not found" });
+    }
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Product deleted successfully" });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal Server Error");
+  }
 };
