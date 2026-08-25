@@ -16,7 +16,9 @@ export const getProduct = async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findOne({ _id: productId });
     if (!product) {
-      res.status(StatusCodes.NOT_FOUND).json({ message: "Product not found" });
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Product not found" });
     }
     res.status(StatusCodes.OK).json(product);
   } catch (error) {
@@ -40,13 +42,12 @@ export const updateProduct = async (req, res) => {
     const updatedProduct = await Product.findOneAndUpdate(
       { _id: productId },
       req.body,
-      {
-        new: true,
-        runValidators: true,
-      },
+      { returnDocument: "after", runValidators: true },
     );
     if (!updatedProduct) {
-      res.status(StatusCodes.NOT_FOUND).json({ message: "Product not found" });
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Product not found" });
     }
     res.status(StatusCodes.OK).json(updatedProduct);
   } catch (error) {
@@ -66,7 +67,9 @@ export const deleteProduct = async (req, res) => {
       },
     );
     if (!deletedProduct) {
-      res.status(StatusCodes.NOT_FOUND).json({ message: "Product not found" });
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Product not found" });
     }
     res
       .status(StatusCodes.OK)
