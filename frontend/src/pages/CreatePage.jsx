@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import {toast} from "react-hot-toast";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 // apres avoir clique sur le boutton on doit utilise axios pour fetch la reponse et aussi on doit retourner a l'acceuil.
@@ -9,10 +10,20 @@ const CreatePage = () => {
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("");
 
-    const handleSubmit = () =>{
+    const navigate = useNavigate();
+    const handleSubmit = async() =>{
         if(!name.trim() || !price.trim() || !image.trim()){
             toast.error("All fields are required");;
             return ;
+        }
+
+        try{
+            await axios.post("/products", {name, price, image});
+            toast.success("Product created successfully");
+            navigate("/");
+        }
+        catch(error){
+            toast.error("Error while create the product");
         }
 
 
