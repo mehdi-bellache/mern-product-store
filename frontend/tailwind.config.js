@@ -6,6 +6,6 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["coffee", "dark", "aqua", "cyberpunk"],
+    themes: ["coffee", "light", "dark", "aqua", "cyberpunk"],
   },
 };
