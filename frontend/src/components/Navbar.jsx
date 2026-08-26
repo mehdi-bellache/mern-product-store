@@ -1,20 +1,34 @@
-import {ShoppingCart, PlusSquare, Sun} from "lucide-react"
+import {ShoppingCart, PlusSquare, Sun, FileX} from "lucide-react";
+import { Link } from "react-router-dom"; 
 
+
+/** 
+ * pour header :
+ * display flex
+ * align items center 
+ * justify-content space-between
+ * pour : 
+ * plus spuare : margin-right 5px
+ * plus-square et l'autre : backaground color: 
+ * 
+*/
 
 const Navbar = () => {
   return (
-    <div>
-        <Link>
-            <h1>Product Store</h1>
-            // and here i should add shopping bag.
-            <ShoppingCart className="size-5"/>
-        </Link>
+    <header className="">
         <div>
+            <h1>Product Store <ShoppingCart className="size-5"/></h1>
+        </div>
+    
+        <div>
+            <PlusSquare/>
+            <Sun/>
+
 
         </div>
 
       
-    </div>
+    </header>
   )
 }
 
