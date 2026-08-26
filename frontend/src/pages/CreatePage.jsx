@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import {toast} from "react-hot-toast";
-import { Navigate, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 
-// apres avoir clique sur le boutton on doit utilise axios pour fetch la reponse et aussi on doit retourner a l'acceuil.
 const CreatePage = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -12,7 +12,8 @@ const CreatePage = () => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const handleSubmit = async() =>{
+    const handleSubmit = async(e) =>{
+        e.preventDefault();
         if(!name.trim() || !price.trim() || !image.trim()){
             toast.error("All fields are required");
             return ;
@@ -21,7 +22,7 @@ const CreatePage = () => {
         setLoading(true)
 
         try{
-            await axios.post("/products", {name, price, image});
+            await axios.post("http://localhost:3000/api/v1/products", {name, price, image});
             toast.success("Product created successfully");
             navigate("/");
         }
@@ -33,7 +34,7 @@ const CreatePage = () => {
         }
     }
   return (
-    
+
     <div className="min-h-screen bg-base-200">
       <Navbar />
 
@@ -45,14 +46,14 @@ const CreatePage = () => {
                 <span className="label-text font-semibold">Product Name</span>
             </label>
             <input type="text" className="input input-bordered w-full" placeholder="e.g. Wireless Mouse" value={name}
-              onChange={(e) => setName(e.target.value)} required/>
+              onChange={(e) => setName(e.target.value)}/>
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Price ($)</span>
             </label>
-            <input type="number" step="0.01" className="input input-bordered w-full" placeholder="99.99" value={price} onChange={(e) => setPrice(e.target.value)}
-              required/>
+            <input type="number" step="0.01" className="input input-bordered w-full" placeholder="99.99" value={price}
+                onChange={(e) => setPrice(e.target.value)}/>
           </div>
 
           <div className="form-control">
@@ -60,8 +61,7 @@ const CreatePage = () => {
               <span className="label-text font-semibold">Image URL</span>
             </label>
             <input type="url" className="input input-bordered w-full" placeholder="https://example.com/image.jpg" value={image} 
-                onChange={(e) => setImage(e.target.value)}
-              required />
+                onChange={(e) => setImage(e.target.value)}/>
           </div>
 
           <button type="submit" className="btn btn-primary w-full mt-2" disabled={loading}>
