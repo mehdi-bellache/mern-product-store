@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import ProductsNotFound from '../components/ProductsNotFound';
 import { Rocket } from 'lucide-react';
+import Product from '../components/Product';
 
 
 
@@ -27,8 +28,15 @@ const HomePage = () => {
         <h1 className="text-3xl font-bold text-primary flex items-center justify-center gap-2 m-3">
           Current Products <Rocket className="size-8"/>
         </h1>
-        {products.length === 0 ?  <ProductsNotFound/> : "products exists"}
-      
+        {products.length === 0 &&  <ProductsNotFound/> }
+
+        {products.length > 0 && (
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            {products.map((product) => (
+              <Product key={product._id} product={product} setProducts={setProducts}/>
+            ))}
+          </div>
+        )}
     </div>
   )
 }
