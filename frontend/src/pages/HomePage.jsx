@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import ProductsNotFound from '../components/ProductsNotFound';
 import { Rocket } from 'lucide-react';
-import Product from '../components/Product';
+import ProductCard from '../components/ProductCard';
 
 
 
@@ -14,7 +14,8 @@ const HomePage = () => {
   useEffect(() =>{
     const fetchProducts = async ()=>{
       try{
-        products = await axios.get("http://localhost:3000/api/v1/products");
+        const result = await axios.get("http://localhost:3000/api/v1/products");
+        setProducts(result.data);
       }
       catch(error){
         toast.error("Error while fetching the products");
@@ -33,7 +34,7 @@ const HomePage = () => {
         {products.length > 0 && (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {products.map((product) => (
-              <Product key={product._id} product={product} setProducts={setProducts}/>
+              <ProductCard key={product._id} product={product} setProducts={setProducts}/>
             ))}
           </div>
         )}
