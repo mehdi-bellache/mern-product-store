@@ -1,8 +1,9 @@
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { PenSquareIcon, Trash2Icon } from "lucide-react";
 
 import toast from "react-hot-toast";
+import api from "../lib/axios";
+
 
 
 const ProductCard = ({product, setProducts}) => {
@@ -10,7 +11,7 @@ const ProductCard = ({product, setProducts}) => {
   const handleDelete = async (e, id)=>{
     e.preventDefault();
     try{
-      await axios.delete(`http://localhost:3000/api/v1/products/${id}`)
+      await api.delete(`/products/${id}`)
       setProducts((prev) => prev.filter((product) => product._id !== id))
       toast.success("product deleted successfully");
     }

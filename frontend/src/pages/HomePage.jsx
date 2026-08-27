@@ -1,10 +1,10 @@
 import Navbar from '../components/Navbar'
-import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import ProductsNotFound from '../components/ProductsNotFound';
 import { Rocket } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import api from "../lib/axios";
 
 
 
@@ -14,7 +14,7 @@ const HomePage = () => {
   useEffect(() =>{
     const fetchProducts = async ()=>{
       try{
-        const result = await axios.get("http://localhost:3000/api/v1/products");
+        const result = await api.get("/products");
         setProducts(result.data);
       }
       catch(error){

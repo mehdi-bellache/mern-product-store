@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar";
-import axios from "axios";
 import toast from "react-hot-toast";
+import api from "../lib/axios";
 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { LoaderIcon } from "lucide-react";
+
 
 const ProductDetailPage = () => {
     const [product, setProduct] = useState(null);
@@ -19,7 +20,7 @@ const ProductDetailPage = () => {
     useEffect(()=>{
         const fetchProduct = async ()=>{
             try{
-                const result = await axios.get(`http://localhost:3000/api/v1/products/${id}`);
+                const result = await api.get(`/products/${id}`);
                 setProduct(result.data);
             }
             catch(error){
@@ -41,7 +42,7 @@ const ProductDetailPage = () => {
         }
         setSaving(true);
         try{
-            await axios.patch(`http://localhost:3000/api/v1/products/${id}`, product);
+            await api.patch(`/products/${id}`, product);
             toast.success("Product Updated Successfully");
             navigate("/");
 

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
-import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import api from "../lib/axios";
 
 
 const CreatePage = () => {
@@ -22,7 +22,7 @@ const CreatePage = () => {
         setLoading(true)
 
         try{
-            await axios.post("http://localhost:3000/api/v1/products", {name, price, image});
+            await api.post("/products", {name, price, image});
             toast.success("Product created successfully");
             navigate("/");
         }
