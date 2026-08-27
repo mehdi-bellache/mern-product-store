@@ -6,7 +6,7 @@
 
 ## Project Goals & Motivation
 
-This project was built primarily to **deepen my both my backend knowledge in Node.js, Express and the frontend logic with React**. Having built a few projects prior, I wanted to build a complete full-stack architecture, connecting a Node.js REST API with a React frontend using **Axios**.
+This project was built primarily to **deepen both my backend knowledge in Node.js, Express and the frontend logic with React**. Having built a few projects prior, I wanted to build a complete full-stack architecture, connecting a Node.js REST API with a React frontend using **Axios**.
 
 Key takeaways from this build:
 - **Backend Focus:** Strengthened Node.js, designed a clean Express REST API, integrated MongoDB, and managed server-side logic.
