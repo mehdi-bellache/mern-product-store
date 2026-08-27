@@ -3,9 +3,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { LoaderIcon } from "lucide-react";
-
 
 const ProductDetailPage = () => {
     const [product, setProduct] = useState(null);
@@ -96,6 +95,8 @@ const ProductDetailPage = () => {
                     <button type="submit" className="btn btn-primary w-full mt-2" disabled={saving}>
                         {saving ? ( <> <span className="loading loading-spinner loading-xs"></span> Saving... </>) : ( 'Save Changes' )}
                     </button>
+
+                     <Link to={"/"} className="btn btn-ghost w-full">Cancel</Link>
                 </form>
             </main>
         </div>
