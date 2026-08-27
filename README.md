@@ -6,13 +6,13 @@
 
 ## Project Goals & Motivation
 
-This project was built primarily to **deepen my backend knowledge in Node.js and Express and Refresh my mind with React and have a first vue on tailwind**. Having built a few projects prior, I wanted to build a complete full-stack architecture, connecting a Node.js REST API with a React frontend using **Axios**.
+This project was built primarily to **deepen my backend knowledge in Node.js, Express and React logic**. Having built a few projects prior, I wanted to build a complete full-stack architecture, connecting a Node.js REST API with a React frontend using **Axios**.
 
 Key takeaways from this build:
-- **Backend Focus:** Strengthened Node.js, Express REST API design, MongoDB integration, and rate-limiting using Upstash Redis.
-- **Frontend Integration:** Refreshed React fundamentals and learned how to structure asynchronous API communication using Axios.
-- **First Time with Tailwind CSS:** Explored Tailwind CSS and pre-styled DaisyUI components for the first time.
-
+- **Backend Focus:** Strengthened Node.js, designed a clean Express REST API, integrated MongoDB, and managed server-side logic.
+- **Frontend Logic & Axios:** Structured asynchronous API communication with Axios and handled user feedback (using `react-hot-toast`).
+- **Tailwind CSS & DaisyUI:** Explored Tailwind CSS and pre-styled DaisyUI components (leveraging AI assistance for design and UI integration).
+- **UI/UX Experience:** Integrated modern icons with `lucide-react` for a smooth and responsive interface.
 ---
 
 ## Live Demo
