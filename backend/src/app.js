@@ -22,7 +22,11 @@ app.use("/api/v1/products", productsRoutes);
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
   const frontendDistPath = path.join(__dirname, "../frontend/dist");
-  app.use(express.static(frontendDistPath, "index.html"));
+  app.use(express.static(frontendDistPath));
+
+  app.get("*splat", (req, res) => {
+    res.sendFile(path.join(frontendDistPath, "index.html"));
+  });
 }
 
 const port = process.env.PORT || 3000;
